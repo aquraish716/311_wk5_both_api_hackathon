@@ -16,7 +16,7 @@ const getDepartment = (req, res) => {
 const getDepartmentByNumber = (req, res) => {
   //Select department by department number
   let sql = "SELECT * FROM ?? WHERE dept_no = ?";
-  sql = mysql.format(sql[("departments", req.params.dept_no)]);
+  sql = mysql.format(sql, ["departments", req.params.dept_no]);
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
     return res.json(rows);
@@ -25,7 +25,7 @@ const getDepartmentByNumber = (req, res) => {
 
 const getDepartmentByName = (req, res) => {
   let sql = "SELECT * FROM ?? WHERE ?? = ?";
-  sql = mysql.format(sql, ["departments", req.body.dept_name);
+  sql = mysql.format(sql, ["departments", req.body.dept_name]);
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
     return res.json(rows);

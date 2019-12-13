@@ -16,7 +16,7 @@ const getSalary = (req, res) => {
 const getSalaryByEmployeeNumber = (req, res) => {
   //Select salary by employee number
   let sql = "SELECT * FROM ?? WHERE emp_no = ?";
-  sql = mysql.format(sql[("salaries", req.params.emp_no)]);
+  sql = mysql.format(sql, ["salaries", req.params.emp_no]);
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
     return res.json(rows);
@@ -25,7 +25,7 @@ const getSalaryByEmployeeNumber = (req, res) => {
 
 const getSalaryByDate = (req, res) => {
   let sql = "SELECT * FROM ?? WHERE ?? = ?";
-  sql = mysql.format(sql, ["salaries", "from date", req.body.from_date]);
+  sql = mysql.format(sql, ["salaries", "from_date", req.body.from_date]);
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
     return res.json(rows);
