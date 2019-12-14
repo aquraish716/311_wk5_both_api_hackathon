@@ -10,7 +10,7 @@
 //   console.log("Connected!");
 // });
 
-const mysql = require("mysql");
+const mysql = require('mysql');
 
 class Connection {
   constructor() {

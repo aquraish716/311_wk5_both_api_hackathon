@@ -1,8 +1,8 @@
-const mysql = require('mysql')
-const pool = require('../sql/connection')
-const { handleSQLError } = require('../sql/error')
+const mysql = require('mysql');
+const pool = require('../mysql/connection');
+const { handleSQLError } = require('../mysql/error');
 
-const getEmployees= (req, res) => {
+const getEmployees = (req, res) => {
    //Limit the result to 50
    let sql = 'SELECT * FROM ?? LIMIT ?';
    sql = mysql.format(sql, ['employees', 50, req.params.id]);
@@ -32,7 +32,7 @@ const getEmployeesById = (req, res) => {
         })
     }
 
-module.export = {
+module.exports = {
     getEmployees, 
     getEmployeesById, 
     getEmployeesByFirstName
