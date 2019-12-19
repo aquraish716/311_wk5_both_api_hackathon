@@ -4,8 +4,8 @@ const { handleSQLError } = require('../mysql/error');
 
 const getDepartment = (req, res) => {
   //select department
-  let sql = "SELECT * FROM ??";
-  sql = mysql.format(sql, ["departments"]);
+  let sql = "SELECT * FROM ?? LIMIT ?";
+  sql = mysql.format(sql, ["departments", 50]);
 
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
@@ -25,7 +25,7 @@ const getDepartmentByNumber = (req, res) => {
 
 const getDepartmentByName = (req, res) => {
   let sql = "SELECT * FROM ?? WHERE dept_name = ?";
-  sql = mysql.format(sql, ["departments", req.body.dept_name]);
+  sql = mysql.format(sql, ["departments", req.params.dept_name]);
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
     return res.json(rows);

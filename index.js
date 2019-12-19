@@ -12,11 +12,11 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(employeesRouter);
+app.use('/employees', employeesRouter);
 
-app.use(salaryRouter);
+app.use('/salary', salaryRouter);
 
-app.use(departmentRouter);
+app.use('/departments', departmentRouter);
 
 
 app.listen(port, () => {
