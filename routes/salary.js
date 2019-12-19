@@ -4,9 +4,9 @@ const router = express.Router();
 
 router.get("/", salaryController.getSalary);
 
-router.get("/:emp_no", salaryController.getSalaryByEmployeeNumber);
+router.get("/:emp_no/", salaryController.getSalaryByEmployeeNumber);
 
-router.get("/:from_date", salaryController.getSalaryByDate);
+router.get('/fromdate/:from_date/', salaryController.getSalaryByDate);
 
 module.exports = router;
 
