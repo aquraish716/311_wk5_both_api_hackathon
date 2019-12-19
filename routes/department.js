@@ -2,7 +2,7 @@ const express = require('express');
 const departmentController = require('../controllers/department');
 const router = express.Router();
 
-router.get("/", departmentController.getDepartment);
+router.get("/departments", departmentController.getDepartment);
 
 router.get("/:dept_no", departmentController.getDepartmentByNumber);
 
