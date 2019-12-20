@@ -25,8 +25,6 @@ app.use(salary);
 app.use(department);
 
 
-
-
 app.listen(port, () => {
-    console.log('app is listening on:', port)
+    console.log('They are listening on:', port)
 });
