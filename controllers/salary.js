@@ -1,11 +1,11 @@
-const mysql = require("mysql");
-const pool = require("../sql/connection");
-const { handleSQLError } = require("../sql/error");
+const mysql = require('mysql');
+const pool = require('../mysql/connection');
+const { handleSQLError } = require('../mysql/error');
 
 const getSalary = (req, res) => {
   //select salary
-  let sql = "SELECT * FROM ??";
-  sql = mysql.format(sql, ["salaries"]);
+  let sql = "SELECT * FROM ?? LIMIT ?";
+  sql = mysql.format(sql, ["salaries", 50]);
 
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
@@ -24,15 +24,15 @@ const getSalaryByEmployeeNumber = (req, res) => {
 };
 
 const getSalaryByDate = (req, res) => {
-  let sql = "SELECT * FROM ?? WHERE ?? = ?";
-  sql = mysql.format(sql, ["salaries", "from_date", req.body.from_date]);
+  let sql = "SELECT * FROM ?? WHERE from_date = ?";
+  sql = mysql.format(sql, ["salaries", req.params.from_date]);
   pool.query(sql, (err, rows) => {
     if (err) return handleSQLError(res, err);
     return res.json(rows);
   });
 };
 
-module.export = {
+module.exports = {
   getSalary,
   getSalaryByEmployeeNumber,
   getSalaryByDate
